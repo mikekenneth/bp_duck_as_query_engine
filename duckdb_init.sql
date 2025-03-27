@@ -40,7 +40,7 @@ ATTACH 'database=db user=user password=password host=mysql port=3306'
 AS mysql_db (TYPE mysql);
 
 
--- Create the base table in Postgres from s3
+-- Create the base table in MySQL from s3
 create or replace table mysql_db.dim_credit_card as
 (
     select *
