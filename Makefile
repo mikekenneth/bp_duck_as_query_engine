@@ -2,7 +2,7 @@
 COMPOSE_FILE := docker-compose.yaml
 
 # Targets
-.PHONY: help up down build logs
+.PHONY: help up down build logs duckdb
 
 help:
 	@echo "Usage: make <target>"
@@ -29,4 +29,4 @@ logs:
 	docker compose -f $(COMPOSE_FILE) logs $$service -f
 
 duckdb:
-	docker exec -it duckdb-cli bash
+	docker exec -it duckdb-cli bash -c "/usr/app/duckdb -init init.sql duck.db"

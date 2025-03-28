@@ -44,5 +44,5 @@ AS mysql_db (TYPE mysql);
 create or replace table mysql_db.dim_credit_card as
 (
     select *
-    from read_csv("s3://duckdb-bucket/init_data/base_raw.csv")
+    from read_csv("s3://duckdb-bucket/init_data/creditcard.csv")
 );

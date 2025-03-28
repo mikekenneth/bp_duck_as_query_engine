@@ -1,4 +1,5 @@
 ---------------- Query multiple Data Sources Simultaneously ----------------
+-- COPY (
 with 
   fct_trips as (
     select *
@@ -14,7 +15,7 @@ with
   ),
   dim_companies_data_web as (
     select distinct *
-    from read_json('http://localhost:8088/companies_data.json')
+    from read_json('http://nginx:80/companies_data.json')
   )
 select 
   trips."Trip ID",
@@ -30,4 +31,14 @@ select
 from fct_trips trips
 LEFT JOIN dim_customer dcust on trips.customer_id = dcust.id
 LEFT JOIN dim_creditcard dcard on trips.credit_card_number = dcard.credit_card_number
-LEFT JOIN dim_companies_data_web dcompany on trips.Company = dcompany.name;
+LEFT JOIN dim_companies_data_web dcompany on trips.Company = dcompany.name
+;
+
+/*
+) TO 's3://duckdb-bucket/query_result.parquet' (FORMAT parquet)
+;
+
+
+select *
+from 's3://duckdb-bucket/query_result.parquet'
+*/
