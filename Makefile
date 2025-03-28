@@ -13,6 +13,7 @@ help:
 	@echo "  build  Build the project images"
 	@echo "  logs   View the logs of a specific service"
 	@echo "  help   Show this help message"
+	@echo "  duckdb Connect to DuckDB CLI container"
 
 up:
 	docker compose -f $(COMPOSE_FILE) up -d
